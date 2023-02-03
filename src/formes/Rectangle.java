@@ -13,23 +13,18 @@ public class Rectangle {
     private int largeur;
     private String nom;
 
-    public Rectangle(int hauteur, int largeur) {
-        try {
-            setHauteur(hauteur);
-            setLargeur(largeur);
-        } catch (FormeException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+    public Rectangle(int hauteur, int largeur) throws FormeException {
+        setHauteur(hauteur);
+        setLargeur(largeur);
         setCouleur(COULEUR_DEFAUT);
         nom = "Rectangle";
-
     }
 
     public String getCouleur() {
         return couleur;
     }
 
-    public static boolean couleurEstValide(String couleur){
+    public static boolean couleurEstValide(String couleur) {
         boolean estValide = false;
 
         couleur = couleur.strip().toLowerCase();
@@ -55,7 +50,7 @@ public class Rectangle {
         return hauteur;
     }
 
-    public static boolean hauteurEstValide(int hauteur){
+    public static boolean hauteurEstValide(int hauteur) {
         return MIN_VAL <= hauteur && hauteur <= MAX_VAL;
     }
 
@@ -71,7 +66,7 @@ public class Rectangle {
         return largeur;
     }
 
-    public static boolean largeurEstValide(int largeur){
+    public static boolean largeurEstValide(int largeur) {
         return MIN_VAL <= largeur && largeur <= MAX_VAL;
     }
 
@@ -83,15 +78,15 @@ public class Rectangle {
         }
     }
 
-    public String getNom(){
+    public String getNom() {
         return nom;
     }
 
-    public int calculerSurface(){
+    public int calculerSurface() {
         return getLargeur() * getHauteur();
     }
 
-    public int calculerPerimetre(){
+    public int calculerPerimetre() {
         return 2 * getLargeur() + 2 * getHauteur();
     }
 
@@ -101,7 +96,7 @@ public class Rectangle {
         if (o == null || getClass() != o.getClass()) return false;
 
         Rectangle rectangle = (Rectangle) o;
-        if (couleur.equals(rectangle.couleur)) {
+        if (couleur.equals(rectangle.getCouleur())) {
             return calculerSurface() == rectangle.calculerSurface();
         }
         return false;
